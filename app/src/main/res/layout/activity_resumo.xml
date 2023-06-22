@@ -1,0 +1,13 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="com.infectedm.visouapp.db.ResumoViewModel" />
+
+        <variable
+            name="viewModel"
+            type="com.infectedm.visouapp.db.ResumoViewModel" />
+    </data>
+
+    <!-- Seu layout do quadro ResumoActivity -->
+
+</layout>

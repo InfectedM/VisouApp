@@ -1,0 +1,119 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.infectedm.visouapp.db.Incidencia" />
+        <variable
+            name="viewModel"
+            type="com.infectedm.visouapp.db.IncidenciasViewModel" />
+        <variable
+            name="incidencia"
+            type="com.infectedm.visouapp.db.Incidencia" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/containerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/incidenciaLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    tools:context=".IncidenciasActivity">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nº"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textViewNumero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(viewModel.incidencias.indexOf(incidencia) + 1)}"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editTextDescricao"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Descrição"
+                        android:text="@{incidencia.descricao}" />
+
+                    <Button
+                        android:id="@+id/buttonRemover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Remover"
+                        android:onClick="@{() -> viewModel.removerIncidencia(incidencia)}" />
+
+                    <Button
+                        android:id="@+id/buttonFoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Tirar Foto"
+                        android:onClick="@{() -> viewModel.tirarFoto(incidencia)}" />
+
+                    <ImageView
+                        android:id="@+id/imageViewFoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:src="@{viewModel.getFotoDrawable(incidencia)}"
+                        android:visibility="@{viewModel.mostrarFoto(incidencia)}"
+                        tools:visibility="visible" />
+
+                    <EditText
+                        android:id="@+id/editTextObservacoes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:hint="Observações"
+                        android:text="@{incidencia.observacoes}" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/buttonAdicionar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Adicionar"
+                        android:onClick="@{() -> viewModel.adicionarIncidencia()}" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/buttonSeguinte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seguinte"
+            android:onClick="@{() -> viewModel.navegarParaObservacoes()}" />
+
+    </LinearLayout>
+</layout>
